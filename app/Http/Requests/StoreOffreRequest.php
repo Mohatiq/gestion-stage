@@ -24,4 +24,13 @@ class StoreOffreRequest extends FormRequest
             'date_limite'  => 'nullable|date|after:today',
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'titre.required'       => 'Le titre est obligatoire.',
+            'description.min'      => 'La description doit faire au moins 20 caractères.',
+            'duree.max'            => 'La durée ne peut pas dépasser 24 mois.',
+            'date_limite.after'    => 'La date limite doit être dans le futur.',
+        ];
+    }
 }

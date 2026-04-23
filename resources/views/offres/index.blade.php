@@ -66,6 +66,6 @@
         @empty
             <p class="text-gray-500">Aucune offre disponible pour le moment.</p>
         @endforelse
-        {{ $offres->links() }}
+        
     </div>
 </x-app-layout>
