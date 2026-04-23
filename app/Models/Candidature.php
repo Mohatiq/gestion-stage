@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Candidature extends Model
 {
-    protected $fillable = ['user_id', 'offre_id', 'status', 'message'];
+    protected $fillable = ['user_id', 'offre_id', 'statut', 'message'];
     public function etudiant(){
         return $this->belongsTo(User::class,'user_id');
     }

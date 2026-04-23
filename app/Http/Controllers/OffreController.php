@@ -8,7 +8,7 @@ class OffreController extends Controller
 {
     public function index()
     {
-        $offres = Offre::with('societe')->get();
+        $offres = Offre::with('societe')->paginate(10);
         return view('offres.index', compact('offres'));
     }
 
@@ -46,10 +46,14 @@ class OffreController extends Controller
         return view('offres.show', compact('offre'));
     }
 
+    
     public function edit(Offre $offre)
     {
-        return view('offres.edit', compact('offre'));
+            if (auth()->id() !== $offre->societe_id) {
+        abort(403, 'Vous ne pouvez pas modifier cette offre.');
     }
+    return view('offres.edit', compact('offre'));
+}
 
     public function update(Request $request, Offre $offre)
     {

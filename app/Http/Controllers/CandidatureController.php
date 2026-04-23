@@ -25,7 +25,7 @@ class CandidatureController extends Controller
     {
         $request->validate([
             'offre_id' => 'required|exists:offres,id',
-            'message'  => 'required|string|min:50',
+            'message'  => 'required|string|min:50|max:2000',
         ]);
 
         // Vérifier qu'il n'a pas déjà postulé

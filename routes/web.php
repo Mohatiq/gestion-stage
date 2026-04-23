@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
     Route::patch('/candidatures/{candidature}', [AdminController::class, 'updateCandidature'])->name('candidatures.update');
