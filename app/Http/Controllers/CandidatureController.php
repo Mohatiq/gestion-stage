@@ -26,6 +26,9 @@ class CandidatureController extends Controller
     // Sauvegarder candidature
     public function store(Request $request)
     {
+        if (auth()->user()->role !== 'etudiant') {
+            abort(403, 'Seuls les étudiants peuvent postuler.');
+        }
         $request->validate([
             'offre_id' => 'required|exists:offres,id',
             'message'  => 'required|string|min:10',
