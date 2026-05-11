@@ -41,16 +41,19 @@ class CandidatureController extends Controller
         if ($existe) {
             return back()->with('error', 'Tu as déjà postulé à cette offre !');
         }
-
-        Candidature::create([
-            'user_id'  => auth()->id(),
-            'offre_id' => $request->offre_id,
-            'message'  => $request->message,
-            'statut'   => 'en_attente',
+        try {
+            Candidature::create([
+                'user_id'  => auth()->id(),
+                'offre_id' => $request->offre_id,
+                'message'  => $request->message,
+                'statut'   => 'en_attente',
         ]);
-
         return redirect('/candidatures')->with('success', 'Candidature envoyée !');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Une erreur est survenue. Veuillez réessayer.');
+        }
     }
+       
 
     // Côté société — voir les candidatures reçues
     public function recues()
